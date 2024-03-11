@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quote Generator</h1>
+        <img class="imge mt-4" src="https://i.pinimg.com/originals/67/57/39/6757397cebeba9cc0c7efd99dcceef9c.gif" width="30%" alt="">
+        <p id="quoteHere" class="fw-bold mt-5">"Random quotes here"</p>
+        <p id="Auth" class="fw-bold">Author:</p>
+        <button onclick="fetchQuotes()" class="btn btn-success">Generate</button>
+    </div>
+
+    <script>
+        async function fetchQuotes() {
+
+            const data=await fetch('https://dummyjson.com/quotes');
+            const quoteData=await data.json();
+            randomNum=Math.floor(Math.random()*30 +1);
+            
+
+    
+            document.getElementById('quoteHere').innerHTML = `<p class="fw-bold">"${quoteData.quotes[randomNum].quote}"</p>`;
+            document.getElementById('Auth').innerHTML = `Author: ${quoteData.quotes[randomNum].author}`;
+        }
+    </script>
+</body>
+</html>
